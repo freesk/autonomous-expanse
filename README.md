@@ -2,6 +2,25 @@
 
 A 3D sandbox drone game built with Godot 4.5. You fly hover drones over a hostile, procedurally generated planet while rival AI factions mine it and fight over it around you.
 
+<table>
+  <tr>
+    <td width="50%"><img src="docs/screenshots/01-mothership-and-squad.png" alt="A drone flying past a green faction mothership while a squad moves out"></td>
+    <td width="50%"><img src="docs/screenshots/03-laser.png" alt="The drone firing its light laser across the dunes"></td>
+  </tr>
+  <tr>
+    <td align="center"><sub>A faction mothership dispatching a squad</sub></td>
+    <td align="center"><sub>Firing the light laser</sub></td>
+  </tr>
+  <tr>
+    <td width="50%"><img src="docs/screenshots/02-mothership-closeup.png" alt="A low pass alongside the mothership's hull"></td>
+    <td width="50%"><img src="docs/screenshots/04-squad-in-the-dunes.png" alt="Squad drones spread out across the procedural desert"></td>
+  </tr>
+  <tr>
+    <td align="center"><sub>A low pass along the mothership's hull</sub></td>
+    <td align="center"><sub>Squad drones crossing the dunes</sub></td>
+  </tr>
+</table>
+
 ## The setting
 
 In 2087, astronomers find **Paradox Prime** (Kepler-442c), a planet 1,200 light-years away that is rich in iridium, platinum and rare earths. Its atmosphere kills a human within minutes. So Earth sends no people. It sends a self-replicating factory seed that builds drones, motherships and an AI to run them, and that AI takes orders through a quantum-entangled communication link.
