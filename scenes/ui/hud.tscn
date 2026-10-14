@@ -1,0 +1,388 @@
+[gd_scene load_steps=4 format=3 uid="uid://c5g8mxn2vwj6k"]
+
+[ext_resource type="Script" path="res://scenes/ui/hud_controller.gd" id="1_hud_controller"]
+[ext_resource type="PackedScene" uid="uid://bvq7x8k9p3j5m" path="res://scenes/ui/components/health_bar.tscn" id="2_health_bar"]
+[ext_resource type="PackedScene" uid="uid://dpk4n2m8r7t3w" path="res://scenes/ui/components/minimap.tscn" id="3_minimap"]
+
+[node name="HUD" type="CanvasLayer"]
+script = ExtResource("1_hud_controller")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="MainLayout" type="Control" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="TopLeft" type="VBoxContainer" parent="MarginContainer/MainLayout"]
+layout_mode = 0
+offset_right = 300.0
+offset_bottom = 200.0
+theme_override_constants/separation = 10
+
+[node name="HealthShieldContainer" type="VBoxContainer" parent="MarginContainer/MainLayout/TopLeft"]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="HealthBar" parent="MarginContainer/MainLayout/TopLeft/HealthShieldContainer" instance=ExtResource("2_health_bar")]
+layout_mode = 2
+
+[node name="ShieldBar" parent="MarginContainer/MainLayout/TopLeft/HealthShieldContainer" instance=ExtResource("2_health_bar")]
+layout_mode = 2
+
+[node name="EnergyBar" parent="MarginContainer/MainLayout/TopLeft/HealthShieldContainer" instance=ExtResource("2_health_bar")]
+layout_mode = 2
+
+[node name="Label" parent="MarginContainer/MainLayout/TopLeft/HealthShieldContainer/EnergyBar"]
+text = "Energy"
+layout_mode = 2
+
+[node name="DroneInfoPanel" type="PanelContainer" parent="MarginContainer/MainLayout/TopLeft"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/MainLayout/TopLeft/DroneInfoPanel"]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="DroneNameLabel" type="Label" parent="MarginContainer/MainLayout/TopLeft/DroneInfoPanel/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "Explorer Drone"
+
+[node name="SpeedLabel" type="Label" parent="MarginContainer/MainLayout/TopLeft/DroneInfoPanel/VBoxContainer"]
+layout_mode = 2
+text = "Speed: 0 m/s"
+
+[node name="AltitudeLabel" type="Label" parent="MarginContainer/MainLayout/TopLeft/DroneInfoPanel/VBoxContainer"]
+layout_mode = 2
+text = "Altitude: 0 m"
+
+[node name="TopRight" type="VBoxContainer" parent="MarginContainer/MainLayout"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -300.0
+offset_bottom = 250.0
+grow_horizontal = 0
+theme_override_constants/separation = 10
+
+[node name="WeaponStatusPanel" type="PanelContainer" parent="MarginContainer/MainLayout/TopRight"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/MainLayout/TopRight/WeaponStatusPanel"]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="PrimaryWeaponLabel" type="Label" parent="MarginContainer/MainLayout/TopRight/WeaponStatusPanel/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "Primary: Light Laser"
+
+[node name="PrimaryAmmoBar" type="ProgressBar" parent="MarginContainer/MainLayout/TopRight/WeaponStatusPanel/VBoxContainer"]
+layout_mode = 2
+max_value = 100.0
+value = 100.0
+show_percentage = false
+
+[node name="PrimaryAmmoLabel" type="Label" parent="MarginContainer/MainLayout/TopRight/WeaponStatusPanel/VBoxContainer"]
+layout_mode = 2
+text = "100 / 100"
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/MainLayout/TopRight/WeaponStatusPanel/VBoxContainer"]
+layout_mode = 2
+
+[node name="SecondaryWeaponLabel" type="Label" parent="MarginContainer/MainLayout/TopRight/WeaponStatusPanel/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "Secondary: Energy Burst"
+
+[node name="SecondaryCooldownBar" type="ProgressBar" parent="MarginContainer/MainLayout/TopRight/WeaponStatusPanel/VBoxContainer"]
+layout_mode = 2
+max_value = 100.0
+value = 100.0
+show_percentage = false
+
+[node name="SecondaryCooldownLabel" type="Label" parent="MarginContainer/MainLayout/TopRight/WeaponStatusPanel/VBoxContainer"]
+layout_mode = 2
+text = "Ready"
+
+[node name="HeatPanel" type="PanelContainer" parent="MarginContainer/MainLayout/TopRight"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/MainLayout/TopRight/HeatPanel"]
+layout_mode = 2
+
+[node name="HeatLabel" type="Label" parent="MarginContainer/MainLayout/TopRight/HeatPanel/VBoxContainer"]
+layout_mode = 2
+text = "Weapon Heat"
+
+[node name="HeatBar" type="ProgressBar" parent="MarginContainer/MainLayout/TopRight/HeatPanel/VBoxContainer"]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+max_value = 100.0
+show_percentage = false
+
+[node name="BottomLeft" type="VBoxContainer" parent="MarginContainer/MainLayout"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -250.0
+offset_right = 300.0
+grow_vertical = 0
+theme_override_constants/separation = 10
+
+[node name="BoostPanel" type="PanelContainer" parent="MarginContainer/MainLayout/BottomLeft"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/MainLayout/BottomLeft/BoostPanel"]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="BoostLabel" type="Label" parent="MarginContainer/MainLayout/BottomLeft/BoostPanel/VBoxContainer"]
+layout_mode = 2
+text = "Boost"
+
+[node name="BoostBar" type="ProgressBar" parent="MarginContainer/MainLayout/BottomLeft/BoostPanel/VBoxContainer"]
+layout_mode = 2
+max_value = 100.0
+value = 100.0
+show_percentage = false
+
+[node name="CargoPanel" type="PanelContainer" parent="MarginContainer/MainLayout/BottomLeft"]
+layout_mode = 2
+visible = false
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/MainLayout/BottomLeft/CargoPanel"]
+layout_mode = 2
+
+[node name="CargoLabel" type="Label" parent="MarginContainer/MainLayout/BottomLeft/CargoPanel/VBoxContainer"]
+layout_mode = 2
+text = "Cargo: 0 / 12"
+
+[node name="CargoBar" type="ProgressBar" parent="MarginContainer/MainLayout/BottomLeft/CargoPanel/VBoxContainer"]
+layout_mode = 2
+max_value = 12.0
+show_percentage = false
+
+[node name="BottomRight" type="VBoxContainer" parent="MarginContainer/MainLayout"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -250.0
+offset_top = -250.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_constants/separation = 10
+alignment = 2
+
+[node name="Minimap" parent="MarginContainer/MainLayout/BottomRight" instance=ExtResource("3_minimap")]
+layout_mode = 2
+
+[node name="CompassPanel" type="PanelContainer" parent="MarginContainer/MainLayout/BottomRight"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/MainLayout/BottomRight/CompassPanel"]
+layout_mode = 2
+
+[node name="CompassLabel" type="Label" parent="MarginContainer/MainLayout/BottomRight/CompassPanel/VBoxContainer"]
+layout_mode = 2
+text = "N"
+horizontal_alignment = 1
+
+[node name="HeadingLabel" type="Label" parent="MarginContainer/MainLayout/BottomRight/CompassPanel/VBoxContainer"]
+layout_mode = 2
+text = "0°"
+horizontal_alignment = 1
+
+[node name="Center" type="CenterContainer" parent="MarginContainer/MainLayout"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = -50.0
+offset_right = 50.0
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Crosshair" type="Control" parent="MarginContainer/MainLayout/Center"]
+layout_mode = 2
+
+[node name="HLine" type="ColorRect" parent="MarginContainer/MainLayout/Center/Crosshair"]
+layout_mode = 0
+offset_left = -20.0
+offset_top = -1.0
+offset_right = 20.0
+offset_bottom = 1.0
+color = Color(0, 1, 0.5, 0.8)
+
+[node name="VLine" type="ColorRect" parent="MarginContainer/MainLayout/Center/Crosshair"]
+layout_mode = 0
+offset_left = -1.0
+offset_top = -20.0
+offset_right = 1.0
+offset_bottom = 20.0
+color = Color(0, 1, 0.5, 0.8)
+
+[node name="CenterDot" type="ColorRect" parent="MarginContainer/MainLayout/Center/Crosshair"]
+layout_mode = 0
+offset_left = -2.0
+offset_top = -2.0
+offset_right = 2.0
+offset_bottom = 2.0
+color = Color(0, 1, 0.5, 0.8)
+
+[node name="AlertsContainer" type="VBoxContainer" parent="MarginContainer/MainLayout"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -200.0
+offset_right = 200.0
+offset_bottom = 100.0
+grow_horizontal = 2
+theme_override_constants/separation = 5
+alignment = 1
+
+[node name="EnemyLockAlert" type="Label" parent="MarginContainer/MainLayout/AlertsContainer"]
+visible = false
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/font_size = 18
+text = "!!! ENEMY LOCK-ON !!!"
+horizontal_alignment = 1
+
+[node name="LowHealthAlert" type="Label" parent="MarginContainer/MainLayout/AlertsContainer"]
+visible = false
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.5, 0, 1)
+theme_override_font_sizes/font_size = 16
+text = "WARNING: Low Health"
+horizontal_alignment = 1
+
+[node name="OverheatAlert" type="Label" parent="MarginContainer/MainLayout/AlertsContainer"]
+visible = false
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 0, 1)
+theme_override_font_sizes/font_size = 16
+text = "Weapon Overheating"
+horizontal_alignment = 1
+
+[node name="DamageIndicators" type="Control" parent="MarginContainer/MainLayout"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TopIndicator" type="ColorRect" parent="MarginContainer/MainLayout/DamageIndicators"]
+visible = false
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -50.0
+offset_right = 50.0
+offset_bottom = 30.0
+grow_horizontal = 2
+color = Color(1, 0, 0, 0.3)
+
+[node name="BottomIndicator" type="ColorRect" parent="MarginContainer/MainLayout/DamageIndicators"]
+visible = false
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -50.0
+offset_top = -30.0
+offset_right = 50.0
+grow_horizontal = 2
+grow_vertical = 0
+color = Color(1, 0, 0, 0.3)
+
+[node name="LeftIndicator" type="ColorRect" parent="MarginContainer/MainLayout/DamageIndicators"]
+visible = false
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -50.0
+offset_right = 30.0
+offset_bottom = 50.0
+grow_vertical = 2
+color = Color(1, 0, 0, 0.3)
+
+[node name="RightIndicator" type="ColorRect" parent="MarginContainer/MainLayout/DamageIndicators"]
+visible = false
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -30.0
+offset_top = -50.0
+offset_bottom = 50.0
+grow_horizontal = 0
+grow_vertical = 2
+color = Color(1, 0, 0, 0.3)
+
+[node name="NotificationsContainer" type="VBoxContainer" parent="MarginContainer/MainLayout"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -200.0
+offset_top = 100.0
+offset_right = 200.0
+offset_bottom = 200.0
+grow_horizontal = 2
+theme_override_constants/separation = 5
+alignment = 1
+
+[node name="BottomCenter" type="VBoxContainer" parent="MarginContainer/MainLayout"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -150.0
+offset_top = -40.0
+offset_right = 150.0
+grow_horizontal = 2
+grow_vertical = 0
+alignment = 2
+
+[node name="CameraModeHint" type="Label" parent="MarginContainer/MainLayout/BottomCenter"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.8, 0.8, 0.8, 0.7)
+theme_override_font_sizes/font_size = 14
+text = "Press TAB to switch to Debug Camera"
+horizontal_alignment = 1
+
+[node name="AlertFlashTimer" type="Timer" parent="."]
+wait_time = 0.5
+autostart = false
+
+[node name="DamageIndicatorTimer" type="Timer" parent="."]
+wait_time = 0.3
+one_shot = true

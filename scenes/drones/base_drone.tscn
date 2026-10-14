@@ -1,0 +1,84 @@
+[gd_scene load_steps=12 format=3 uid="uid://base_drone_scene"]
+
+[ext_resource type="Script" path="res://src/systems/motion_system.gd" id="0_motion"]
+[ext_resource type="Script" path="res://src/systems/health_system.gd" id="1_health"]
+[ext_resource type="Script" path="res://src/systems/energy_system.gd" id="2_energy"]
+[ext_resource type="Script" path="res://src/systems/cargo_system.gd" id="3_cargo"]
+[ext_resource type="Script" path="res://src/controllers/motion_controller.gd" id="4_input"]
+[ext_resource type="Script" path="res://src/systems/aim_system.gd" id="5_aim"]
+[ext_resource type="Script" path="res://src/controllers/weapon_controller.gd" id="6_weapon"]
+[ext_resource type="Script" path="res://src/utils/drone_colorizer.gd" id="8_colorizer"]
+[ext_resource type="Script" path="res://src/controllers/thruster_controller.gd" id="9_thruster_controller"]
+[ext_resource type="Script" path="res://src/systems/drone_engine_audio.gd" id="10_engine_audio"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_base"]
+radius = 0.5
+height = 2.0
+
+[node name="BaseDrone" type="RigidBody3D"]
+mass = 1200.0
+collision_layer = 1
+collision_mask = 3
+inertia = Vector3(200, 300, 200)
+continuous_cd = true
+can_sleep = false
+lock_rotation = false
+axis_lock_angular_x = true
+axis_lock_angular_z = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_base")
+
+[node name="ModelMount" type="Node3D" parent="."]
+
+[node name="WeaponHardpoints" type="Node3D" parent="."]
+
+[node name="PrimarySlot" type="Node3D" parent="WeaponHardpoints"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.0)
+
+[node name="SecondarySlot" type="Node3D" parent="WeaponHardpoints"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.0)
+
+[node name="EffectAttachments" type="Node3D" parent="."]
+
+[node name="ShieldMount" type="Node3D" parent="EffectAttachments"]
+
+[node name="MotionSystem" type="Node" parent="."]
+script = ExtResource("0_motion")
+
+[node name="HealthSystem" type="Node" parent="."]
+script = ExtResource("1_health")
+
+[node name="EnergySystem" type="Node" parent="."]
+script = ExtResource("2_energy")
+
+[node name="CargoSystem" type="Node" parent="."]
+script = ExtResource("3_cargo")
+max_cargo_capacity = 12
+
+[node name="MotionController" type="Node" parent="."]
+script = ExtResource("4_input")
+control_mode = 0
+
+[node name="AimSystem" type="Node" parent="."]
+script = ExtResource("5_aim")
+
+[node name="WeaponController" type="Node" parent="."]
+script = ExtResource("6_weapon")
+
+[node name="DroneColorizer" type="Node" parent="."]
+script = ExtResource("8_colorizer")
+color_intensity = 1.2
+metallic = 0.7
+roughness = 0.3
+
+[node name="ThrusterController" type="Node" parent="."]
+script = ExtResource("9_thruster_controller")
+base_intensity = 0.3
+max_intensity = 3.0
+base_glow_emission = 0.5
+max_glow_emission = 8.0
+intensity_smoothing = 8.0
+
+[node name="DroneEngineAudio" type="Node" parent="."]
+script = ExtResource("10_engine_audio")

@@ -1,0 +1,88 @@
+[gd_scene load_steps=2 format=3 uid="uid://dpk4n2m8r7t3w"]
+
+[ext_resource type="Script" path="res://scenes/ui/components/minimap.gd" id="1_minimap"]
+
+[node name="Minimap" type="PanelContainer"]
+custom_minimum_size = Vector2(200, 200)
+script = ExtResource("1_minimap")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="MapContainer" type="Control" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="MapBackground" type="ColorRect" parent="MarginContainer/MapContainer"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.1, 0.1, 0.1, 0.8)
+
+[node name="MapCenter" type="Control" parent="MarginContainer/MapContainer"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -100.0
+offset_right = 100.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PlayerMarker" type="ColorRect" parent="MarginContainer/MapContainer/MapCenter"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -4.0
+offset_top = -4.0
+offset_right = 4.0
+offset_bottom = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 0.785398
+color = Color(0, 1, 0, 1)
+
+[node name="ObjectMarkers" type="Control" parent="MarginContainer/MapContainer/MapCenter"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RangeCircle" type="Control" parent="MarginContainer/MapContainer"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -90.0
+offset_top = -90.0
+offset_right = 90.0
+offset_bottom = 90.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Border" type="ReferenceRect" parent="MarginContainer/MapContainer"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+border_color = Color(0, 1, 0.5, 1)
+border_width = 2.0

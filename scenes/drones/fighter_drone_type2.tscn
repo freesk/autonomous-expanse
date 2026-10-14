@@ -1,0 +1,24 @@
+[gd_scene load_steps=6 format=3 uid="uid://fighter_drone_type2_scene"]
+
+[ext_resource type="PackedScene" uid="uid://base_drone_scene" path="res://scenes/drones/base_drone.tscn" id="1_base"]
+[ext_resource type="Script" path="res://src/drones/fighter_drone_type2.gd" id="2_script"]
+[ext_resource type="PackedScene" path="res://assets/drones/FighterDroneType2.glb" id="3_model"]
+[ext_resource type="PackedScene" uid="uid://thruster_effect" path="res://scenes/effects/thruster.tscn" id="4_thruster"]
+[ext_resource type="PackedScene" path="res://scenes/weapons/light_laser.tscn" id="5_weapon"]
+[ext_resource type="PackedScene" uid="uid://energy_burst_weapon" path="res://scenes/weapons/energy_burst.tscn" id="6_energy_burst"]
+
+[node name="FighterDroneType2" instance=ExtResource("1_base")]
+script = ExtResource("2_script")
+
+[node name="GLBModel" parent="ModelMount" index="0" instance=ExtResource("3_model")]
+transform = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, 0, 0, 0)
+
+[node name="EngineLeft" parent="ModelMount" index="1" instance=ExtResource("4_thruster")]
+transform = Transform3D(0.15, 0, 0, 0, 0, 0.15, 0, -0.15, 0, -0.22, -0.04, 0.575)
+
+[node name="EngineRight" parent="ModelMount" index="2" instance=ExtResource("4_thruster")]
+transform = Transform3D(0.15, 0, 0, 0, 0, 0.15, 0, -0.15, 0, 0.22, -0.04, 0.575)
+
+[node name="LightLaser" parent="WeaponHardpoints/PrimarySlot" index="0" instance=ExtResource("5_weapon")]
+
+[node name="EnergyBurst" parent="WeaponHardpoints/SecondarySlot" index="0" instance=ExtResource("6_energy_burst")]

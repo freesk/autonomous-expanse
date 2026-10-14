@@ -1,0 +1,319 @@
+[gd_scene load_steps=2 format=3 uid="uid://d9k6m4n8p3q7w"]
+
+[ext_resource type="Script" path="res://scenes/ui/mothership_controller.gd" id="1_mothership_controller"]
+
+[node name="MothershipUI" type="Control"]
+process_mode = 3
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_mothership_controller")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.05, 0.08, 0.12, 0.95)
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 40
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="LeftPanel" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="TitleLabel" type="Label" parent="MarginContainer/HBoxContainer/LeftPanel"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "MOTHERSHIP"
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/HBoxContainer/LeftPanel"]
+layout_mode = 2
+
+[node name="TabButtons" type="VBoxContainer" parent="MarginContainer/HBoxContainer/LeftPanel"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="DroneBayButton" type="Button" parent="MarginContainer/HBoxContainer/LeftPanel/TabButtons"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+toggle_mode = true
+button_pressed = true
+text = "Drone Bay"
+
+[node name="ArmoryButton" type="Button" parent="MarginContainer/HBoxContainer/LeftPanel/TabButtons"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+toggle_mode = true
+text = "Armory"
+
+[node name="UpgradesButton" type="Button" parent="MarginContainer/HBoxContainer/LeftPanel/TabButtons"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+toggle_mode = true
+text = "Upgrades"
+
+[node name="StorageButton" type="Button" parent="MarginContainer/HBoxContainer/LeftPanel/TabButtons"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+toggle_mode = true
+text = "Storage"
+
+[node name="MapButton" type="Button" parent="MarginContainer/HBoxContainer/LeftPanel/TabButtons"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+toggle_mode = true
+text = "Map & Journal"
+
+[node name="Spacer" type="Control" parent="MarginContainer/HBoxContainer/LeftPanel"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ResourcesPanel" type="PanelContainer" parent="MarginContainer/HBoxContainer/LeftPanel"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/LeftPanel/ResourcesPanel"]
+layout_mode = 2
+
+[node name="ResourcesLabel" type="Label" parent="MarginContainer/HBoxContainer/LeftPanel/ResourcesPanel/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "Resources"
+
+[node name="MetalLabel" type="Label" parent="MarginContainer/HBoxContainer/LeftPanel/ResourcesPanel/VBoxContainer"]
+layout_mode = 2
+text = "Metal: 0"
+
+[node name="EnergyLabel" type="Label" parent="MarginContainer/HBoxContainer/LeftPanel/ResourcesPanel/VBoxContainer"]
+layout_mode = 2
+text = "Energy: 0"
+
+[node name="ArtifactsLabel" type="Label" parent="MarginContainer/HBoxContainer/LeftPanel/ResourcesPanel/VBoxContainer"]
+layout_mode = 2
+text = "Artifacts: 0"
+
+[node name="ExitButton" type="Button" parent="MarginContainer/HBoxContainer/LeftPanel"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "Exit Mothership"
+
+[node name="ContentPanel" type="PanelContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/ContentPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="TabContent" type="Control" parent="MarginContainer/HBoxContainer/ContentPanel/MarginContainer"]
+layout_mode = 2
+
+[node name="DroneBayTab" type="VBoxContainer" parent="MarginContainer/HBoxContainer/ContentPanel/MarginContainer/TabContent"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 15
+
+[node name="TitleLabel" type="Label" parent="MarginContainer/HBoxContainer/ContentPanel/MarginContainer/TabContent/DroneBayTab"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "Drone Bay - Select Active Drone"
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/HBoxContainer/ContentPanel/MarginContainer/TabContent/DroneBayTab"]
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/HBoxContainer/ContentPanel/MarginContainer/TabContent/DroneBayTab"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="DronesList" type="VBoxContainer" parent="MarginContainer/HBoxContainer/ContentPanel/MarginContainer/TabContent/DroneBayTab/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 10
+
+[node name="ArmoryTab" type="VBoxContainer" parent="MarginContainer/HBoxContainer/ContentPanel/MarginContainer/TabContent"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 15
+
+[node name="TitleLabel" type="Label" parent="MarginContainer/HBoxContainer/ContentPanel/MarginContainer/TabContent/ArmoryTab"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "Armory - Equip Weapons"
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/HBoxContainer/ContentPanel/MarginContainer/TabContent/ArmoryTab"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/HBoxContainer/ContentPanel/MarginContainer/TabContent/ArmoryTab"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 20
+
+[node name="LeftPanel" type="VBoxContainer" parent="MarginContainer/HBoxContainer/ContentPanel/MarginContainer/TabContent/ArmoryTab/HBoxContainer"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/ContentPanel/MarginContainer/TabContent/ArmoryTab/HBoxContainer/LeftPanel"]
+layout_mode = 2
+text = "Available Weapons"
+
+[node name="WeaponsList" type="ItemList" parent="MarginContainer/HBoxContainer/ContentPanel/MarginContainer/TabContent/ArmoryTab/HBoxContainer/LeftPanel"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="RightPanel" type="VBoxContainer" parent="MarginContainer/HBoxContainer/ContentPanel/MarginContainer/TabContent/ArmoryTab/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/ContentPanel/MarginContainer/TabContent/ArmoryTab/HBoxContainer/RightPanel"]
+layout_mode = 2
+text = "Current Loadout"
+
+[node name="LoadoutInfo" type="RichTextLabel" parent="MarginContainer/HBoxContainer/ContentPanel/MarginContainer/TabContent/ArmoryTab/HBoxContainer/RightPanel"]
+layout_mode = 2
+size_flags_vertical = 3
+bbcode_enabled = true
+text = "[b]Primary Slot:[/b] Empty
+[b]Secondary Slot:[/b] Empty"
+
+[node name="EquipButton" type="Button" parent="MarginContainer/HBoxContainer/ContentPanel/MarginContainer/TabContent/ArmoryTab/HBoxContainer/RightPanel"]
+layout_mode = 2
+text = "Equip Weapon"
+
+[node name="UpgradesTab" type="VBoxContainer" parent="MarginContainer/HBoxContainer/ContentPanel/MarginContainer/TabContent"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 15
+
+[node name="TitleLabel" type="Label" parent="MarginContainer/HBoxContainer/ContentPanel/MarginContainer/TabContent/UpgradesTab"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "Upgrades - Enhance Your Drones"
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/HBoxContainer/ContentPanel/MarginContainer/TabContent/UpgradesTab"]
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/HBoxContainer/ContentPanel/MarginContainer/TabContent/UpgradesTab"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="UpgradesList" type="VBoxContainer" parent="MarginContainer/HBoxContainer/ContentPanel/MarginContainer/TabContent/UpgradesTab/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 10
+
+[node name="StorageTab" type="VBoxContainer" parent="MarginContainer/HBoxContainer/ContentPanel/MarginContainer/TabContent"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 15
+
+[node name="TitleLabel" type="Label" parent="MarginContainer/HBoxContainer/ContentPanel/MarginContainer/TabContent/StorageTab"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "Storage - Inventory Management"
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/HBoxContainer/ContentPanel/MarginContainer/TabContent/StorageTab"]
+layout_mode = 2
+
+[node name="GridContainer" type="GridContainer" parent="MarginContainer/HBoxContainer/ContentPanel/MarginContainer/TabContent/StorageTab"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/h_separation = 10
+theme_override_constants/v_separation = 10
+columns = 8
+
+[node name="MapTab" type="VBoxContainer" parent="MarginContainer/HBoxContainer/ContentPanel/MarginContainer/TabContent"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 15
+
+[node name="TitleLabel" type="Label" parent="MarginContainer/HBoxContainer/ContentPanel/MarginContainer/TabContent/MapTab"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "Map & Journal - Discoveries"
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/HBoxContainer/ContentPanel/MarginContainer/TabContent/MapTab"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/HBoxContainer/ContentPanel/MarginContainer/TabContent/MapTab"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 20
+
+[node name="MapPanel" type="PanelContainer" parent="MarginContainer/HBoxContainer/ContentPanel/MarginContainer/TabContent/MapTab/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/ContentPanel/MarginContainer/TabContent/MapTab/HBoxContainer/MapPanel"]
+layout_mode = 2
+text = "Map View (Coming Soon)"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="JournalPanel" type="VBoxContainer" parent="MarginContainer/HBoxContainer/ContentPanel/MarginContainer/TabContent/MapTab/HBoxContainer"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/ContentPanel/MarginContainer/TabContent/MapTab/HBoxContainer/JournalPanel"]
+layout_mode = 2
+text = "Discovered Locations"
+
+[node name="LocationsList" type="ItemList" parent="MarginContainer/HBoxContainer/ContentPanel/MarginContainer/TabContent/MapTab/HBoxContainer/JournalPanel"]
+layout_mode = 2
+size_flags_vertical = 3

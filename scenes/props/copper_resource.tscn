@@ -1,0 +1,32 @@
+[gd_scene load_steps=4 format=3 uid="uid://c4m8p7r3s6t2u"]
+
+[ext_resource type="Script" path="res://scenes/props/resource_node.gd" id="1_resource_node"]
+[ext_resource type="PackedScene" uid="uid://3shu8h50gbv2" path="res://assets/resources/copper_resource.glb" id="2_copper_model"]
+[ext_resource type="Script" path="res://src/utils/mesh_collision_generator.gd" id="3_mesh_collision"]
+
+[node name="CopperResource" type="StaticBody3D" groups=["resource_node"]]
+collision_layer = 16
+collision_mask = 0
+script = ExtResource("1_resource_node")
+resource_type = 1
+resource_amount = 300
+harvest_rate = 15.0
+respawn_enabled = true
+respawn_time = 90.0
+max_health = 3000.0
+resource_color = Color(0.72, 0.45, 0.2, 1)
+emission_color = Color(0.85, 0.55, 0.25, 1)
+glow_intensity = 0.5
+
+[node name="Model" parent="." instance=ExtResource("2_copper_model")]
+
+[node name="MeshCollisionGenerator" type="Node" parent="."]
+script = ExtResource("3_mesh_collision")
+
+[node name="Label3D" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
+pixel_size = 0.01
+billboard = 1
+text = "Copper"
+font_size = 32
+outline_size = 4

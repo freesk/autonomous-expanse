@@ -1,0 +1,96 @@
+[gd_scene load_steps=6 format=3 uid="uid://mothership_scene"]
+
+[ext_resource type="Script" path="res://src/systems/health_system.gd" id="1_health"]
+[ext_resource type="Script" path="res://src/utils/mothership_controller.gd" id="2_controller"]
+[ext_resource type="PackedScene" path="res://assets/drones/MotherShip.glb" id="3_model"]
+[ext_resource type="Script" path="res://src/utils/mesh_collision_generator.gd" id="4_collision"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_1"]
+radius = 5.0
+
+[node name="Mothership" type="Node3D"]
+script = ExtResource("2_controller")
+
+[node name="ModelMount" type="StaticBody3D" parent="."]
+collision_layer = 1
+collision_mask = 0
+
+[node name="MeshCollisionGenerator" type="Node" parent="ModelMount"]
+script = ExtResource("4_collision")
+
+[node name="GLBModel" parent="ModelMount" instance=ExtResource("3_model")]
+transform = Transform3D(100.0, 0, 0, 0, 100.0, 0, 0, 0, 100.0, 0, 0, 0)
+
+[node name="InteractionZones" type="Node3D" parent="."]
+
+[node name="DroneBay" type="Area3D" parent="InteractionZones"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3, 5)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="InteractionZones/DroneBay"]
+shape = SubResource("SphereShape3D_1")
+
+[node name="InteractionMarker" type="Node3D" parent="InteractionZones/DroneBay"]
+
+[node name="Armory" type="Area3D" parent="InteractionZones"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="InteractionZones/Armory"]
+shape = SubResource("SphereShape3D_1")
+
+[node name="InteractionMarker" type="Node3D" parent="InteractionZones/Armory"]
+
+[node name="UpgradeTerminal" type="Area3D" parent="InteractionZones"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="InteractionZones/UpgradeTerminal"]
+shape = SubResource("SphereShape3D_1")
+
+[node name="InteractionMarker" type="Node3D" parent="InteractionZones/UpgradeTerminal"]
+
+[node name="LandingPad" type="Area3D" parent="InteractionZones"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="InteractionZones/LandingPad"]
+shape = SubResource("SphereShape3D_1")
+
+[node name="LandingMarker" type="Node3D" parent="InteractionZones/LandingPad"]
+
+[node name="HealthSystem" type="Node" parent="."]
+script = ExtResource("1_health")
+max_health = 500.0
+max_shields = 300.0
+shield_recharge_rate = 20.0
+shield_recharge_delay = 8.0
+
+[node name="Lights" type="Node3D" parent="."]
+
+[node name="DockingLight_Left" type="SpotLight3D" parent="Lights"]
+transform = Transform3D(1, 0, 0, 0, -0.707107, 0.707107, 0, -0.707107, -0.707107, -3, 2, 5)
+light_color = Color(0.3, 1, 0.3, 1)
+spot_range = 15.0
+spot_angle = 45.0
+
+[node name="DockingLight_Right" type="SpotLight3D" parent="Lights"]
+transform = Transform3D(1, 0, 0, 0, -0.707107, 0.707107, 0, -0.707107, -0.707107, 3, 2, 5)
+light_color = Color(0.3, 1, 0.3, 1)
+spot_range = 15.0
+spot_angle = 45.0
+
+[node name="StatusLight_Port" type="OmniLight3D" parent="Lights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, 0)
+light_color = Color(1, 0.2, 0.2, 1)
+omni_range = 3.0
+
+[node name="StatusLight_Starboard" type="OmniLight3D" parent="Lights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 0)
+light_color = Color(0.2, 1, 0.2, 1)
+omni_range = 3.0
+
+[connection signal="body_entered" from="InteractionZones/DroneBay" to="." method="_on_drone_bay_body_entered"]
+[connection signal="body_exited" from="InteractionZones/DroneBay" to="." method="_on_drone_bay_body_exited"]
+[connection signal="body_entered" from="InteractionZones/Armory" to="." method="_on_armory_body_entered"]
+[connection signal="body_exited" from="InteractionZones/Armory" to="." method="_on_armory_body_exited"]
+[connection signal="body_entered" from="InteractionZones/UpgradeTerminal" to="." method="_on_upgrade_terminal_body_entered"]
+[connection signal="body_exited" from="InteractionZones/UpgradeTerminal" to="." method="_on_upgrade_terminal_body_exited"]
+[connection signal="body_entered" from="InteractionZones/LandingPad" to="." method="_on_landing_pad_body_entered"]
+[connection signal="body_exited" from="InteractionZones/LandingPad" to="." method="_on_landing_pad_body_exited"]

@@ -1,0 +1,44 @@
+[gd_scene load_steps=5 format=3 uid="uid://faction_mothership"]
+
+[ext_resource type="Script" path="res://src/buildings/mothership.gd" id="1_script"]
+[ext_resource type="PackedScene" path="res://assets/drones/MotherShip.glb" id="2_model"]
+[ext_resource type="PackedScene" uid="uid://assembly_zone" path="res://scenes/buildings/assembly_zone.tscn" id="3_assembly_zone"]
+[ext_resource type="Script" path="res://src/utils/mesh_collision_generator.gd" id="4_collision_gen"]
+
+[node name="Mothership" type="Node3D"]
+script = ExtResource("1_script")
+
+[node name="Label3D" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 80, 0)
+billboard = 1
+no_depth_test = true
+shaded = true
+double_sided = false
+text = "Mothership Alpha [Unknown Faction]"
+font_size = 64
+outline_size = 12
+outline_modulate = Color(0, 0, 0, 1)
+
+[node name="Visual" type="StaticBody3D" parent="."]
+collision_layer = 1
+collision_mask = 0
+
+[node name="MeshCollisionGenerator" type="Node" parent="Visual"]
+script = ExtResource("4_collision_gen")
+
+[node name="GLBModel" parent="Visual" instance=ExtResource("2_model")]
+transform = Transform3D(100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0)
+
+[node name="AssemblyZones" type="Node3D" parent="."]
+
+[node name="AssemblyZone1" parent="AssemblyZones" instance=ExtResource("3_assembly_zone")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 60, -25, 0)
+zone_id = 1
+
+[node name="AssemblyZone2" parent="AssemblyZones" instance=ExtResource("3_assembly_zone")]
+transform = Transform3D(-0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, -0.5, -30, -25, 51.9615)
+zone_id = 2
+
+[node name="AssemblyZone3" parent="AssemblyZones" instance=ExtResource("3_assembly_zone")]
+transform = Transform3D(-0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, -0.5, -30, -25, -51.9615)
+zone_id = 3

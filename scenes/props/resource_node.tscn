@@ -1,0 +1,64 @@
+[gd_scene load_steps=7 format=3 uid="uid://b7h9k8lp6m5n4"]
+
+[ext_resource type="Script" path="res://scenes/props/resource_node.gd" id="1_resource_node"]
+[ext_resource type="Script" path="res://src/utils/mesh_collision_generator.gd" id="2_mesh_collision"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_resource"]
+radius = 1.5
+height = 3.0
+radial_segments = 16
+rings = 8
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_resource"]
+albedo_color = Color(0.6, 0.45, 0.3, 1)
+metallic = 0.6
+roughness = 0.5
+emission_enabled = true
+emission = Color(0.7, 0.5, 0.2, 1)
+emission_energy_multiplier = 0.4
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_interaction"]
+radius = 3.0
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_glow"]
+emission_shape = 1
+emission_sphere_radius = 1.5
+particle_flag_align_y = true
+direction = Vector3(0, 1, 0)
+spread = 45.0
+initial_velocity_min = 0.5
+initial_velocity_max = 1.5
+gravity = Vector3(0, 0.5, 0)
+scale_min = 0.1
+scale_max = 0.3
+color = Color(0.8, 0.6, 0.3, 0.6)
+
+[node name="ResourceNode" type="StaticBody3D" groups=["resource_node"]]
+script = ExtResource("1_resource_node")
+
+[node name="Mesh" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_resource")
+surface_material_override/0 = SubResource("StandardMaterial3D_resource")
+
+[node name="MeshCollisionGenerator" type="Node" parent="."]
+script = ExtResource("2_mesh_collision")
+
+[node name="InteractionArea" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="InteractionArea"]
+shape = SubResource("SphereShape3D_interaction")
+
+[node name="GlowParticles" type="GPUParticles3D" parent="."]
+amount = 20
+lifetime = 2.0
+visibility_aabb = AABB(-2, -2, -2, 4, 4, 4)
+process_material = SubResource("ParticleProcessMaterial_glow")
+draw_pass_1 = SubResource("SphereMesh_resource")
+
+[node name="Label3D" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
+pixel_size = 0.01
+billboard = 1
+text = "Resource"
+font_size = 32
+outline_size = 4

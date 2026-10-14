@@ -1,0 +1,32 @@
+[gd_scene load_steps=4 format=3 uid="uid://d5n9q8s4t7v3w"]
+
+[ext_resource type="Script" path="res://scenes/props/resource_node.gd" id="1_resource_node"]
+[ext_resource type="PackedScene" uid="uid://ciaumsfl0kaj3" path="res://assets/resources/iron_resource.glb" id="2_iron_model"]
+[ext_resource type="Script" path="res://src/utils/mesh_collision_generator.gd" id="3_mesh_collision"]
+
+[node name="IronResource" type="StaticBody3D" groups=["resource_node"]]
+collision_layer = 16
+collision_mask = 0
+script = ExtResource("1_resource_node")
+resource_type = 0
+resource_amount = 250
+harvest_rate = 12.0
+respawn_enabled = true
+respawn_time = 90.0
+max_health = 2500.0
+resource_color = Color(0.6, 0.45, 0.3, 1)
+emission_color = Color(0.7, 0.5, 0.2, 1)
+glow_intensity = 0.4
+
+[node name="Model" parent="." instance=ExtResource("2_iron_model")]
+
+[node name="MeshCollisionGenerator" type="Node" parent="."]
+script = ExtResource("3_mesh_collision")
+
+[node name="Label3D" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
+pixel_size = 0.01
+billboard = 1
+text = "Iron"
+font_size = 32
+outline_size = 4

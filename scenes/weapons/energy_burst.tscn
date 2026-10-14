@@ -1,0 +1,15 @@
+[gd_scene load_steps=5 format=3 uid="uid://energy_burst_weapon"]
+
+[ext_resource type="Script" path="res://src/weapons/energy_burst_weapon.gd" id="1_1"]
+[ext_resource type="PackedScene" path="res://scenes/weapons/projectiles/energy_burst_projectile.tscn" id="2_1"]
+[ext_resource type="AudioStreamOggVorbis" path="res://assets/audio/weapons/laserLarge_000.ogg" id="3_fire"]
+[ext_resource type="AudioStreamOggVorbis" path="res://assets/audio/weapons/impactMetal_002.ogg" id="4_impact"]
+
+[node name="EnergyBurst" type="Node3D"]
+script = ExtResource("1_1")
+burst_projectile_scene = ExtResource("2_1")
+fire_sound = ExtResource("3_fire")
+impact_sound = ExtResource("4_impact")
+
+[node name="MuzzlePoint" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.5)
